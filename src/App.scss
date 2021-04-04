@@ -1,0 +1,41 @@
+$cool-bg-color: #282c34;
+$main-font-color: #ffffff;
+
+.App-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    background-color: $cool-bg-color;
+    color: $main-font-color;
+    height: 80px;
+
+    .routes-wrapper {
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .route-link {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            text-decoration: none;
+            color: $main-font-color;
+            padding: 0 15px;
+
+            &:hover {
+                background-color: rgba($color: #ccc, $alpha: .5);
+            }
+
+            &:nth-child(2n) {
+                margin: 0 15px;
+            }
+        }
+
+        .active-route {
+            background-color: rgba($color: #ccc, $alpha: .5);
+        }
+    }
+
+}
