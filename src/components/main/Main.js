@@ -1,7 +1,11 @@
+import Search from "../search/Search";
+
 export default function Main() {
     return (
         <>
-            <h1>Main page</h1>
+            <div className="search-wrapper">
+                <Search />
+            </div>
         </>
     )
 }

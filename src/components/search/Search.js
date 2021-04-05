@@ -21,7 +21,7 @@ export default function Search() {
 
     return (
         <>
-            <input ref={inputValue} type="text" onChange={submitDelay(searchRes)}/>
+            <input ref={inputValue} type="text" id={'search-input'} placeholder={'Найти...'} onChange={submitDelay(searchRes)}/>
         </>
     )
 }

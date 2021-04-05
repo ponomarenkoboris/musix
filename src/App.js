@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, NavLink, Switch, Route } from 'react-router-dom'
 import './App.scss';
-import Search from "./components/search/Search";
 import MyNote from "./components/mynote/MyNote";
 import Profile from "./components/profile/Profile";
 import Main from "./components/main/Main";
@@ -16,13 +15,13 @@ function App() {
                         <NavLink className="route-link" to={'/my-note'} exact activeClassName="active-route">Мои заметки</NavLink>
                         <NavLink className="route-link" to={'/profile'} exact activeClassName="active-route">Профиль</NavLink>
                     </div>
-                    <div className="search-wrapper">
-                        <Search />
+                    <div className="logo-wrapper">
+                        <h1>LOGO</h1>
                     </div>
                 </header>
                 <main className="main-section">
                     <Switch>
-                        <Route path={'/my-app'}>
+                        <Route path={'/my-note'}>
                             <MyNote />
                         </Route>
                         <Route path={'/profile'}>
