@@ -4,9 +4,9 @@ import './MyNote.scss'
 
 export default function MyNote() {
     const [changes, setChanges] = useState(false)
-    const [userName, setUserName] = useState(sessionStorage.getItem('userName') || 'USERNAME')
-    const [userEmail, setUserEmail] = useState(sessionStorage.getItem('userEmail') || 'USEREMAIL')
-    const [avatar, setAvatar] = useState(sessionStorage.getItem('userAvatar') || 'AVATAR')
+    const [userName, setUserName] = useState(sessionStorage.getItem('userName') ?? 'USERNAME')
+    const [userEmail, setUserEmail] = useState(sessionStorage.getItem('userEmail') ?? 'USEREMAIL')
+    const [avatar, setAvatar] = useState(sessionStorage.getItem('userAvatar') ?? 'AVATAR')
     const nameRef = useRef(null)
     const emailRef = useRef(null)
     const fileLoader = useRef(null)
@@ -30,7 +30,9 @@ export default function MyNote() {
 
     function deleteUser() {
         const result = window.confirm('Вы уверенны, что хотите удалить аккаунт?');
-        console.log('result', result)
+        if (!result) return
+        sessionStorage.clear()
+        window.location.reload()
     }
 
     return (

@@ -1,0 +1,13 @@
+.main-page {
+
+    .main-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        .compilation-of-films {
+            width: 80%;
+        }
+    }
+}
