@@ -1,4 +1,4 @@
-export function findInfo(val) {
+export function findInfo(selector, val) {
     return new Promise((resolve, reject) => {
         fetch(`https://imdb8.p.rapidapi.com/title/find?q=${val}`, {
             headers: {

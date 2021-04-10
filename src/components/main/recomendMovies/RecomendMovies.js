@@ -1,13 +1,18 @@
-import React from 'react';
-import { getRecomended } from "./getRecomended";
+import React, { useState } from 'react';
+// import { getPopularMovies } from "./getPopularMovies";
 
 export default function Recomend() {
-    // slider
-    getRecomended()
+    const [films, setFilms] = useState(null)
+    // const list = getPopularMovies();
+    // list.then(filmsList => setFilms(filmsList))
 
     return (
         <>
-            <h1>RECOMENDED</h1>
+            <div className="films-container">
+                {!films ? <h1>Loading...</h1> : films.map(film => (
+                    <div key={film} className="film-wrapper">{film}</div>
+                )) }
+            </div>
         </>
     )
 }
