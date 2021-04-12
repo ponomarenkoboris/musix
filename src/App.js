@@ -4,6 +4,7 @@ import './App.scss';
 import MyNote from "./components/mynote/MyNote";
 import Main from "./components/main/Main";
 import Hearthstone from './hearthstone/Hearthstone';
+import SearchSong from './SearchSong/SearchSong';
 
 // when IMDB api will be working, it will be a .film-note web-app
 
@@ -16,6 +17,7 @@ function App() {
                         <NavLink className="route-link" to={'/'} exact activeClassName="active-route">.film-note</NavLink>
                         <NavLink className="route-link" to={'/my-note'} exact activeClassName="active-route">Мои заметки</NavLink>
                         <NavLink className="route-link" to={'/hearthstone'} exact activeClassName="active-route">Hearthstone</NavLink>
+                        <NavLink className="route-link" to={'/search-song'} exact activeClassName="active-route">Search Song</NavLink>
                     </div>
                     <div className="logo-wrapper">
                         <h1>LOGO</h1>
@@ -28,6 +30,9 @@ function App() {
                         </Route>
                         <Route path={'/hearthstone'}>
                             <Hearthstone name={'7850476804356708cm'} />
+                        </Route>
+                        <Route path={'/search-song'}>
+                            <SearchSong />
                         </Route>
                         <Route path={'/'}>
                             <Main />
