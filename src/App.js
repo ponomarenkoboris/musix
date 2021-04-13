@@ -1,12 +1,7 @@
 import React from 'react';
-import { BrowserRouter as Router, NavLink, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, NavLink, Route, Redirect } from 'react-router-dom'
 import './App.scss';
-import MyNote from "./components/mynote/MyNote";
-import Main from "./components/main/Main";
-import Hearthstone from './hearthstone/Hearthstone';
-import SearchSong from './SearchSong/SearchSong';
-
-// when IMDB api will be working, it will be a .film-note web-app
+import SearchSong from './components/SearchSong';
 
 function App() {
     return (
@@ -14,9 +9,6 @@ function App() {
             <Router>
                 <header className="App-header">
                     <div className="routes-wrapper">
-                        <NavLink className="route-link" to={'/'} exact activeClassName="active-route">.film-note</NavLink>
-                        <NavLink className="route-link" to={'/my-note'} exact activeClassName="active-route">Мои заметки</NavLink>
-                        <NavLink className="route-link" to={'/hearthstone'} exact activeClassName="active-route">Hearthstone</NavLink>
                         <NavLink className="route-link" to={'/search-song'} exact activeClassName="active-route">Search Song</NavLink>
                     </div>
                     <div className="logo-wrapper">
@@ -24,20 +16,10 @@ function App() {
                     </div>
                 </header>
                 <main className="main-section">
-                    <Switch>
-                        <Route path={'/my-note'}>
-                            <MyNote />
-                        </Route>
-                        <Route path={'/hearthstone'}>
-                            <Hearthstone name={'7850476804356708cm'} />
-                        </Route>
-                        <Route path={'/search-song'}>
-                            <SearchSong />
-                        </Route>
-                        <Route path={'/'}>
-                            <Main />
-                        </Route>
-                    </Switch>
+                    <Redirect from={'/'} to={'/search-song'} />
+                    <Route path={'/search-song'}>
+                        <SearchSong />
+                    </Route>
                 </main>
             </Router>
         </div>
