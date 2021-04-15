@@ -1,41 +1,48 @@
 import axios from 'axios'
-import { addResults } from "../app/results";
 
 const CLIENT_ID = '8a67165f8493462bb25b036b4639c561'
+
+// TODO change secret
 const CLIENT_SECRET = 'e4b0d91f834048e59a36889ff617ab2e'
 const REDIRECT_URL = 'http://192.168.1.68:777/search-song'
 
 
 export function sendSearchRequestAPI(value, type) {
-    const token = localStorage.getItem('access_token');
-    if (!token) return
-    const requestConfig = {
-        url: `https://api.spotify.com/v1/search?q=${value}&type=${type}&offset=0&limit=20`,
-        method: 'GET',
-        headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`
+    return new Promise((resolve, reject) => {
+        const token = localStorage.getItem('access_token');
+        if (!token) return 'Необходимо пройти регистрацию'
+        const requestConfig = {
+            url: `https://api.spotify.com/v1/search?q=${value}&type=${type}&offset=0&limit=20`,
+            method: 'GET',
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            }
         }
-    }
-    const data = axios.request(requestConfig)
-    data.then(response => response.json())
-        .then(data => {
-            console.log('data.items', data.items)
-            addResults(data.items)
-        })
-    data.catch(error => console.log(error))
+        const data = axios.request(requestConfig)
+        data.then(response => resolve(response.data.artists))
+        data.catch(error => reject({ customMess: 'Some thing got wrong', ...error }))
+    })
 }
-
-// function getUserDataAPI() {
-//     const requestConfig = {
-//         method: 'GET',
-//         url: 'https://api.spotify.com/v1/me',
-//         headers: {
-//             'Authorization': `Bearer ${}`
-//         }
-//     }
-// }
+function getUserDataAPI() {
+    return new Promise((resolve, reject) => {
+        const token = localStorage.getItem('access_token');
+        if (!token) return 'Необходимо пройти регистрацию'
+        const requestConfig = {
+            method: 'GET',
+            url: 'https://api.spotify.com/v1/me',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        }
+        const userData = axios.request(requestConfig);
+        userData.then(response => reject(response))
+        userData.catch(error => reject(error))
+    })
+}
 
 function fetchAccessToken(code) {
     console.log('code', code)
