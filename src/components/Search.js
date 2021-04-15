@@ -20,7 +20,6 @@ export default function Search() {
     const dispatch = useDispatch()
 
     function submitHandler() {
-        console.log(searchVal.current.value)
         if (!searchVal.current.value) return
         const type = searchBy ? 'track' : 'artist'
         const searchResults = sendSearchRequestAPI(searchVal.current.value, type)
