@@ -3,7 +3,6 @@
 features/
 components/
 hearthstone/
-app/
 # dependencies
 /node_modules
 /.pnp
