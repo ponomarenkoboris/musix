@@ -1,0 +1,83 @@
+$inputs-height: 2rem;
+.search-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0 20%;
+
+    .selectors {
+        margin-right: 20px;
+
+        .current-selector-wrapper {
+            width: 150px;
+            height: $inputs-height;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            transition: .22s ease-in;
+            &:active {
+                background-color: #cccccc;
+            }
+
+            .current-selector {
+                margin: 4px 0 0 0   ;
+                text-align: center;
+            }
+        }
+
+        .items-list {
+            padding: 0;
+            position: absolute;
+            border: 1px solid #ccc;
+            border-top: none;
+            margin: 0;
+            background-color: #fff;
+
+            .list-item-artist,
+            .list-item-song {
+                list-style: none;
+
+                .item {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: space-between;
+                    cursor: pointer;
+                    width: 150px;
+
+                    &:hover {
+                        background-color: #ccc;
+                    }
+
+                    #radio1,
+                    #radio2 {
+                        margin: 0 0 0 7px;
+                    }
+
+                    .list-item-title {
+                        padding: 0 7px 0 0;
+                        margin: 5px 0 5px 0;
+                    }
+                }
+            }
+            .list-item-artist {
+                border-bottom: .5px solid #ccc;
+            }
+        }
+
+    }
+
+    .search-input-wrapper {
+        width: 100%;
+
+        #search-field{
+            padding: 0 10px;
+            height: $inputs-height;
+            width: 100%;
+            border: 1px solid rgba($color: #ccc, $alpha: .8);
+            border-radius: 5px;
+            outline: none;
+            font-size: 1.3rem;
+        };
+
+    }
+}
