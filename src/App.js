@@ -6,8 +6,18 @@ import './App.scss';
 import SearchSong from './components/SearchSong';
 import { ThemeProvider } from './context/ThemeContext'
 
+import {fetchUserData} from "./utils/spotify";
+
+// TODO complete user setup
 function App() {
     const user = useSelector(currentUser);
+
+    if (window.location.search.length > 0) {
+        const urlParams = new URLSearchParams(window.location.search)
+        fetchUserData(urlParams.get('code'))
+            .then(userData => console.log('userData', userData))
+        window.history.pushState('', '', 'http://192.168.1.68:777/search-song') // clear param from url
+    }
 
     return (
         <ThemeProvider>

@@ -3,13 +3,12 @@ import axios from 'axios'
 const CLIENT_ID = '8a67165f8493462bb25b036b4639c561'
 
 // TODO change secret
-const CLIENT_SECRET = 'e4b0d91f834048e59a36889ff617ab2e'
-const REDIRECT_URL = 'http://192.168.1.68:777/search-song'
-
+const CLIENT_SECRET = 'afb2e371cf1a449bbf8c89bdb7a07ff0'
+const REDIRECT_URL_FROM_SPOTIFY = 'http://192.168.1.68:777/'
 
 export function sendSearchRequestAPI(value, type) {
+    const token = localStorage.getItem('access_token')
     return new Promise((resolve, reject) => {
-        const token = localStorage.getItem('access_token');
         if (!token) return 'Необходимо пройти регистрацию'
         const requestConfig = {
             url: `https://api.spotify.com/v1/search?q=${value}&type=${type}&offset=0&limit=20`,
@@ -25,9 +24,9 @@ export function sendSearchRequestAPI(value, type) {
         data.catch(error => reject({ customMess: 'Some thing got wrong', ...error }))
     })
 }
-function getUserDataAPI() {
+
+function getUserDataAPI(token) {
     return new Promise((resolve, reject) => {
-        const token = localStorage.getItem('access_token');
         if (!token) return 'Необходимо пройти регистрацию'
         const requestConfig = {
             method: 'GET',
@@ -39,40 +38,38 @@ function getUserDataAPI() {
             }
         }
         const userData = axios.request(requestConfig);
-        userData.then(response => reject(response))
-        userData.catch(error => reject(error))
+        userData.then(response => resolve(response.data))
+        userData.catch(error => reject(['some went wrong', error]))
+    })
+
+}
+
+export function fetchUserData(code) { // return user data
+    return new Promise((resolve, reject) => {
+        const requestConfig = {
+            method: 'POST',
+            url: 'https://accounts.spotify.com/api/token',
+            data: `grant_type=authorization_code&code=${code}&redirect_uri=${encodeURI(REDIRECT_URL_FROM_SPOTIFY)}&client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}`,
+            headers: {
+                'Content-type': 'application/x-www-form-urlencoded',
+                'Authorization': `Basic ${btoa(CLIENT_ID + ':' + CLIENT_SECRET)}`
+            }
+        }
+        axios.request(requestConfig)
+            .then(response => {
+                if (response.status === 200) {
+                    localStorage.setItem('access_token', response.data.access_token)
+                    localStorage.setItem('refresh_token', response.data.refresh_token)
+                    getUserDataAPI(response.data.access_token)
+                        .then(data => resolve(data))
+                    // window.location.reload()
+                }
+            })
+            .catch(error => console.error(error))
     })
 }
 
-function fetchAccessToken(code) {
-    console.log('code', code)
-    const requestConfig = {
-        method: 'POST',
-        url: 'https://accounts.spotify.com/api/token',
-        data: `grant_type=authorization_code&code=${code}&redirect_uri=${encodeURI(REDIRECT_URL)}&client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}`,
-        headers: {
-            'Content-type': 'application/x-www-form-urlencoded',
-            'Authorization': `Basic ${btoa(CLIENT_ID + ':' + CLIENT_SECRET)}`
-        }
-    }
-    axios.request(requestConfig)
-        .then(response => {
-            if (response.status === 200) {
-                localStorage.setItem('access_token', response.data.access_token)
-                localStorage.setItem('refresh_token', response.data.refresh_token)
-            }
-        })
-}
-
-export function getCode() {
-    if (window.location.search.length > 0) {
-        const urlParams = new URLSearchParams(window.location.search)
-        fetchAccessToken(urlParams.get('code'))
-        window.history.pushState('', '', REDIRECT_URL) // clear param from url
-    }
-}
-
 export function requestAuthorization() {
-    const scopes = 'user-read-private user-read-email'
-    window.location.href = `https://accounts.spotify.com/authorize?response_type=code&client_id=${CLIENT_ID}&scope=${scopes}&redirect_uri=${encodeURI(REDIRECT_URL)}`
+    const scopes = 'user-read-private user-read-email ugc-image-upload'
+    window.location.href = `https://accounts.spotify.com/authorize?response_type=code&client_id=${CLIENT_ID}&scope=${scopes}&redirect_uri=${encodeURI(REDIRECT_URL_FROM_SPOTIFY)}`
 }

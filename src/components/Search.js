@@ -24,10 +24,8 @@ export default function Search() {
         const type = searchBy ? 'track' : 'artist'
         const searchResults = sendSearchRequestAPI(searchVal.current.value, type)
         searchResults.then(data => {
-            console.log(data)
             dispatch(addResults(data))
-        })
-            .catch(error => console.log(error))
+        }).catch(error => console.log(error))
     }
 
     return (

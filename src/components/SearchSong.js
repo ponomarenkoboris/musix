@@ -3,11 +3,9 @@ import Search from './Search'
 import AuthArea from "./Auth";
 import Results from './Results'
 import './styles/SearchSong.scss'
-import { getCode } from '../utils/spotify';
 
 export default function SearchSong() {
-    const controller = localStorage.getItem('access_token') ?? ''
-    getCode()
+    const controller = localStorage.getItem('access_token');
 
     return (
         <div className="search-song-container">

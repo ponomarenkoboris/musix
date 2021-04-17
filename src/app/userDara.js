@@ -6,10 +6,10 @@ export const userData = createSlice({
         data: {}
     },
     reducers: {
-        addUserData(state, action) {
+        addUserData: (state, action) => {
             state.data = { ...action.payload }
         },
-        removeUserData(state) {
+        removeUserData: state => {
             state.data = {}
         }
     }
