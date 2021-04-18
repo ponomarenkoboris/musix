@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { addResults } from "../app/results";
 import './styles/Search.scss'
 
+// delay function
 function debounce(fn) {
     let timer;
     return () => {
@@ -27,9 +28,9 @@ export default function Search() {
             dispatch(addResults(data))
         }).catch(error => console.log(error))
     }
-
+    // TODO complete close selectors window logic
     return (
-        <div className="search-container">
+        <div className="search-container" onClick={e => !e.target.closest('.selectors') ? setShowSelectors(false) : undefined}>
             <div className="selectors">
                 <div className="current-selector-wrapper" onClick={() => showSelectors ? setShowSelectors(false) : setShowSelectors(true)}>
                     <p className="current-selector">{searchBy ? 'Исполнители' : 'Песни'}</p>
@@ -54,7 +55,7 @@ export default function Search() {
                        className="search-field"
                        type="text"
                        id="search-field"
-                       placeholder={!searchBy ? 'Введтие имя исполнителя' : 'Введите название песни'}
+                       placeholder={!searchBy ? 'Введите название песни' : 'Введтие имя исполнителя'}
                 />
             </div>
         </div>

@@ -61,11 +61,18 @@ export function fetchUserData(code) { // return user data
                     localStorage.setItem('access_token', response.data.access_token)
                     localStorage.setItem('refresh_token', response.data.refresh_token)
                     getUserDataAPI(response.data.access_token)
-                        .then(data => resolve(data))
-                    // window.location.reload()
+                        .then(data => {
+                            console.log(data)
+                            localStorage.setItem('display_name', data.display_name)
+                            localStorage.setItem('user_avatar', data.images[0].url)
+                            localStorage.setItem('user_uri', data.uri)
+                            resolve()
+                        })
                 }
             })
-            .catch(error => console.error(error))
+            .catch(error => {
+                reject(error)
+            })
     })
 }
 
