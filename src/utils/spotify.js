@@ -20,7 +20,7 @@ export function sendSearchRequestAPI(value, type) {
             }
         }
         const data = axios.request(requestConfig)
-        data.then(response => resolve(response.data.artists))
+        data.then(response => resolve(response.data?.artists?.items))
         data.catch(error => reject({ customMess: 'Some thing got wrong', ...error }))
     })
 }
