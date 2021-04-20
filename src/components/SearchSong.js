@@ -17,7 +17,7 @@ export default function SearchSong() {
                 <div className="search-field-wrapper">
                     <Search />
                 </div>
-                <div className="search-results">
+                <div className="results-container">
                     <Results />
                 </div>
             </SearchProvider>

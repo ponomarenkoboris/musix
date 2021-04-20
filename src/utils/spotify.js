@@ -20,7 +20,10 @@ export function sendSearchRequestAPI(value, type) {
             }
         }
         const data = axios.request(requestConfig)
-        data.then(response => resolve(response.data?.artists?.items))
+        data.then(response => {
+            console.log(response)
+            resolve(type !== 'track' ? { type, list: response.data?.artists?.items } : { type, list: response.data?.tracks?.items })
+        })
         data.catch(error => reject({ customMess: 'Some thing got wrong', ...error }))
     })
 }

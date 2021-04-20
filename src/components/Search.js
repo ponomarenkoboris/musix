@@ -30,7 +30,7 @@ export default function Search() {
     }
     // TODO complete close selector logic ( создать div с размером в весь экран при нажатии на который закрываются селекторы )
     return (
-        <div className="search-container" onClick={e => !e.target.closest('.selectors') ? setShowSelectors(false) : undefined}>
+        <div className="search-container" onClick={e => !e.target.closest('.selectors') ? setShowSelectors(false) : null}>
             <div className="selectors">
                 <div className="current-selector-wrapper" onClick={() => showSelectors ? setShowSelectors(false) : setShowSelectors(true)}>
                     <p className="current-selector">{type === 'artist' ? 'Исполнители' : 'Песни'}</p>

@@ -1,0 +1,29 @@
+// TODO comlete styles
+.artist-wrapper {
+    display: flex;
+    margin: 0 0 50px 0;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    box-shadow:  20px 20px 92px #afafaf, -20px -20px 92px #ffffff;
+
+    .artist-main-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .artist-genre-wrapper {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+
+        .artist-genre-title {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+    }
+}
