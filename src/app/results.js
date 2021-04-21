@@ -8,7 +8,6 @@ export const searchResults = createSlice({
     },
     reducers: {
         addResults: (state, action) => {
-            console.log('action.payload', action.payload)
             state.type = action.payload.type
             state.value = [ ...action.payload.list ]
         }

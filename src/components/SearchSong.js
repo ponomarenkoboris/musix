@@ -1,9 +1,10 @@
 import React from 'react'
 import Search from './Search'
-import AuthArea from "./Auth";
 import Results from './Results'
-import './styles/SearchSong.scss'
 import { SearchProvider } from "../context/SearchContext";
+import { requestAuthorization } from "../utils/spotify";
+
+import './styles/SearchSong.scss'
 
 export default function SearchSong() {
     const controller = localStorage.getItem('access_token');
@@ -11,7 +12,13 @@ export default function SearchSong() {
     return (
         <div className="search-song-container">
             <div className="page-top-container">
-                {!controller ? <div className="auth-wrapper"><h1><AuthArea /></h1></div> : ''}
+                {!controller ?
+                    <div className="authentication-container">
+                        <button onClick={requestAuthorization} className="login-sptif">
+                            Login in Spotify
+                        </button>
+                    </div>
+                    : ''}
             </div>
             <SearchProvider>
                 <div className="search-field-wrapper">

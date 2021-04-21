@@ -6,29 +6,8 @@ const CLIENT_ID = '8a67165f8493462bb25b036b4639c561'
 const CLIENT_SECRET = 'afb2e371cf1a449bbf8c89bdb7a07ff0'
 const REDIRECT_URL_FROM_SPOTIFY = 'http://192.168.1.68:777/'
 
-export function sendSearchRequestAPI(value, type) {
-    const token = localStorage.getItem('access_token')
-    return new Promise((resolve, reject) => {
-        if (!token) return 'Необходимо пройти регистрацию'
-        const requestConfig = {
-            url: `https://api.spotify.com/v1/search?q=${value}&type=${type}&offset=0&limit=20`,
-            method: 'GET',
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`
-            }
-        }
-        const data = axios.request(requestConfig)
-        data.then(response => {
-            console.log(response)
-            resolve(type !== 'track' ? { type, list: response.data?.artists?.items } : { type, list: response.data?.tracks?.items })
-        })
-        data.catch(error => reject({ customMess: 'Some thing got wrong', ...error }))
-    })
-}
-
-function getUserDataAPI(token) {
+// Authorization
+function getUserData(token) {
     return new Promise((resolve, reject) => {
         if (!token) return 'Необходимо пройти регистрацию'
         const requestConfig = {
@@ -63,7 +42,7 @@ export function fetchUserData(code) { // return user data
                 if (response.status === 200) {
                     localStorage.setItem('access_token', response.data.access_token)
                     localStorage.setItem('refresh_token', response.data.refresh_token)
-                    getUserDataAPI(response.data.access_token)
+                    getUserData(response.data.access_token)
                         .then(data => {
                             console.log(data)
                             localStorage.setItem('display_name', data.display_name)
@@ -82,4 +61,24 @@ export function fetchUserData(code) { // return user data
 export function requestAuthorization() {
     const scopes = 'user-read-private user-read-email ugc-image-upload'
     window.location.href = `https://accounts.spotify.com/authorize?response_type=code&client_id=${CLIENT_ID}&scope=${scopes}&redirect_uri=${encodeURI(REDIRECT_URL_FROM_SPOTIFY)}`
+}
+
+// API
+export function sendSearchRequestAPI(value, type) {
+    const token = localStorage.getItem('access_token')
+    return new Promise((resolve, reject) => {
+        if (!token) reject('Необходимо пройти регистрацию')
+        const requestConfig = {
+            url: `https://api.spotify.com/v1/search?q=${value}&type=${type}&offset=0&limit=20`,
+            method: 'GET',
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            }
+        }
+        const data = axios.request(requestConfig)
+        data.then(response => resolve(type !== 'track' ? { type, list: response.data?.artists?.items } : { type, list: response.data?.tracks?.items }))
+        data.catch(error => reject({ customMess: 'Some thing got wrong', ...error }))
+    })
 }

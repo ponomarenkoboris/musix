@@ -21,8 +21,11 @@ export default function Search() {
     const searchVal = useRef()
     const dispatch = useDispatch()
 
+    let lastSearch;
     function submitHandler() {
-        if (!searchVal.current.value) return
+        if (!searchVal.current.value && !searchVal.current.value.trim()) return
+        if (lastSearch === searchVal.current.value.trim().toLowerCase()) return
+        lastSearch = searchVal.current.value.trim().toLowerCase()
         const searchResults = sendSearchRequestAPI(searchVal.current.value, type)
         searchResults.then(data => {
             dispatch(addResults(data))
