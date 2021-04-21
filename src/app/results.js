@@ -7,9 +7,9 @@ export const searchResults = createSlice({
         value: []
     },
     reducers: {
-        addResults: (state, action) => {
-            state.type = action.payload.type
-            state.value = [ ...action.payload.list ]
+        addResults: (state, { payload }) => {
+            state.type = payload.type
+            state.value = [ ...payload.list ]
         }
     }
 })

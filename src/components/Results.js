@@ -1,9 +1,18 @@
-import { useSelector } from "react-redux";
 import { resultsValue } from '../app/results';
+import { useSelector } from "react-redux";
+// import { useSelector, useDispatch } from "react-redux";
+// import { allNotes, addToNote } from "../app/notes";
 import './styles/Results.scss';
 
+// TODO добавить конопку добавления элемента в заметки
 export default function Results() {
     const [ type, list ] = useSelector(resultsValue)
+    // const notes = useSelector(allNotes)
+    // const dispatch = useDispatch()
+
+    // const addToFavourites = (data) => {
+    //     dispatch(addToNote(data))
+    // }
 
     return (
         <>

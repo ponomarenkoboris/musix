@@ -7,15 +7,17 @@ export const notes = createSlice({
         notes: []
     },
     reducers: {
-        addNote: (state, payload) => {
+        addToNote: (state, { payload }) => {
             console.log(state, payload)
+            state.notes = [ payload, state.notes ]
         },
-        removeNote: (state, payload) => {
+        removeFromNote: (state, { payload }) => {
             console.log(state, payload)
+            state.notes.filter(item => item.id !== payload.id)
         }
     }
 })
 
-export const { addNote, removeNote } = notes.actions;
+export const { addToNote, removeFromNote } = notes.actions;
 export const allNotes = state => state.favourites.notes;
 export default notes.reducer
