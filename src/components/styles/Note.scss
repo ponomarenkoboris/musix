@@ -1,0 +1,22 @@
+.notes-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	//.page-title {}
+
+	.notes-selectors-wrapper {
+		width: 20%;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		.selector {
+			cursor: pointer;
+			background-color: #fff;
+			border: none;
+			font-size: 1.5rem;
+
+		}
+	}
+}

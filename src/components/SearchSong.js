@@ -1,13 +1,17 @@
 import React from 'react'
 import Search from './Search'
-import Results from './Results'
+// import Results from './Results'
 import { SearchProvider } from "../context/SearchContext";
 import { requestAuthorization } from "../utils/spotify";
 
 import './styles/SearchSong.scss'
+import {useSelector} from "react-redux";
+import {resultsValue} from "../app/results";
+import {RenderList} from './RenderList'
 
 export default function SearchSong() {
     const controller = localStorage.getItem('access_token');
+    const [ type, list ] = useSelector(resultsValue)
 
     return (
         <div className="search-song-container">
@@ -25,7 +29,7 @@ export default function SearchSong() {
                     <Search />
                 </div>
                 <div className="results-container">
-                    <Results />
+                    <RenderList isNote={false} type={type} list={list} />
                 </div>
             </SearchProvider>
         </div>

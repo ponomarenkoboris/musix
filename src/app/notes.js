@@ -4,12 +4,14 @@ import { createSlice } from "@reduxjs/toolkit";
 export const notes = createSlice({
     name: 'favourites',
     initialState: {
-        notes: []
+        notesTracks: [],
+        notesArtists: []
     },
     reducers: {
         addToNote: (state, { payload }) => {
-            console.log(state, payload)
-            state.notes = [ payload, state.notes ]
+            const { type, item } = payload
+            if (type === 'artist') state.notesArtists.unshift(item)
+            if (type === 'track') state.notesTracks.unshift(item)
         },
         removeFromNote: (state, { payload }) => {
             console.log(state, payload)
@@ -19,5 +21,6 @@ export const notes = createSlice({
 })
 
 export const { addToNote, removeFromNote } = notes.actions;
-export const allNotes = state => state.favourites.notes;
+export const allNotesTracks = state => state.favourites.notesTracks;
+export const allNotesArtists = state => state.favourites.notesArtists;
 export default notes.reducer
