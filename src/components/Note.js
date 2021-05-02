@@ -1,7 +1,7 @@
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { allNotesTracks, allNotesArtists } from "../app/notes";
 import './styles/Note.scss'
-import { useState } from "react";
 import { RenderList } from './RenderList'
 
 // TODO add styles

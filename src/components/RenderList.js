@@ -1,10 +1,10 @@
+import React from 'react'
 import {addToNote} from "../app/notes";
 import {useDispatch} from "react-redux";
 import './styles/RenderList.scss';
 
 export const RenderList = ({ isNote, type, list }) => {
     const dispatch = useDispatch()
-    console.log()
     if (!list.length) {
         return <div>Запеисей пока нет</div>
     }
@@ -19,8 +19,13 @@ export const RenderList = ({ isNote, type, list }) => {
                                 <img src={item.images[2].url} alt={`${item.name}`} className={`${type}-photo`}/>}
                             <h1 className={`${list.type}-title`}>{item.name}</h1>
                         </a>
-                        {!isNote && <button onClick={() => dispatch(addToNote({type, item}))}
-                                            className="add-to-favor-btn">Добавить в заметки</button>}
+                        <div className={`${type}-button-wrapper`}>
+                            {!isNote &&
+                                <button onClick={() => dispatch(addToNote({type, item}))}
+                                        className="add-to-favor-btn">Добавить в заметки</button>
+                            }
+                            <hr className="underline"/>
+                        </div>
                     </div>
                     <div className={`${type}-genre-wrapper`}>
                         {item.genres.length ?
@@ -39,8 +44,11 @@ export const RenderList = ({ isNote, type, list }) => {
                                      className={`${type}-photo`}/>}
                             <p>Track name: <strong>{item.name}</strong></p>
                         </a>
-                        {!isNote && <button onClick={() => dispatch(addToNote({type, item}))}
-                                            className="add-to-favor-btn">Добавить в заметки</button>}
+                        <div className={`${type}-button-wrapper`}>
+                            {!isNote && <button onClick={() => dispatch(addToNote({type, item}))}
+                                                className="add-to-favor-btn">Добавить в заметки</button>}
+                            <hr className="underline"/>
+                        </div>
                     </div>
                     <div className="album-info">
                         <p>Album: <strong>{item.album.name}</strong></p>

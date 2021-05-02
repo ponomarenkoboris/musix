@@ -1,3 +1,4 @@
+import React from 'react'
 import './styles/UserWrapper.scss'
 
 export const UserWrapper = () => {

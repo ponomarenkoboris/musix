@@ -8,7 +8,7 @@ import { UserWrapper } from './components/UserWrapper'
 import { ThemeProvider } from './context/ThemeContext'
 import { fetchUserData } from "./utils/spotify";
 
-function App() {
+export default function App() {
 
     if (window.location.search.length > 0) {
         const urlParams = new URLSearchParams(window.location.search)
@@ -48,5 +48,3 @@ function App() {
         </ThemeProvider>
     );
 }
-
-export default App;

@@ -1,6 +1,35 @@
 $wrapper-margin: 0 0 50px 0;
 $wrapper-box-shadow: 20px 20px 92px #afafaf, -20px -20px 92px #ffffff;
 
+@mixin button-fav-wrapper {
+    .underline {
+        margin: 3px auto;
+        width: 0;
+        visibility: hidden;
+        transition: width 200ms ease-in-out;
+    }
+
+    .add-to-favor-btn {
+        cursor: pointer;
+        background-color: #fff;
+        outline: none;
+        border: none;
+        transition: .22s ease-in-out;
+    }
+
+    &:hover {
+        .add-to-favor-btn {
+            color: #1db954;
+        }
+
+        .underline {
+            border-color: #1db954;
+            visibility: visible;
+            width: 100%;
+        }
+    }
+}
+
 // TODO complete styles
 .artist-wrapper {
     display: flex;
@@ -17,6 +46,12 @@ $wrapper-box-shadow: 20px 20px 92px #afafaf, -20px -20px 92px #ffffff;
         flex-direction: column;
         justify-content: center;
         text-align: center;
+
+        .artist-button-wrapper {
+            width: 135px;
+
+            @include button-fav-wrapper;
+        }
     }
 
     .artist-genre-wrapper {
@@ -43,5 +78,11 @@ $wrapper-box-shadow: 20px 20px 92px #afafaf, -20px -20px 92px #ffffff;
     .track-information {
         display: flex;
         flex-direction: column;
+
+        .track-button-wrapper {
+            width: 135px;
+
+            @include button-fav-wrapper;
+        }
     }
 }

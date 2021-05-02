@@ -1,4 +1,4 @@
-import {useRef} from "react";
+import React, {useRef} from "react";
 import { useThemeContext } from "../context/ThemeContext";
 import './styles/ThemeSwitcher.scss'
 
