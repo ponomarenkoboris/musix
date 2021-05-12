@@ -8,8 +8,8 @@ export const notes = createSlice({
         notesArtists: []
     },
     reducers: {
-        addToNote: (state, { payload }) => {
-            const { type, item } = payload
+        addToNote: (state, action) => {
+            const { type, item } = action.payload
             if (type === 'artist') state.notesArtists.unshift(item)
             if (type === 'track') state.notesTracks.unshift(item)
         },

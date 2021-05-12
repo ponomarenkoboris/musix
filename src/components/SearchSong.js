@@ -1,35 +1,34 @@
 import React from 'react'
 import Search from './Search'
-// import Results from './Results'
 import { SearchProvider } from "../context/SearchContext";
 import { requestAuthorization } from "../utils/spotify";
 
-import './styles/SearchSong.scss'
+import styles from  './styles/SearchSong.scss'
 import {useSelector} from "react-redux";
 import {resultsValue} from "../app/results";
 import {RenderList} from './RenderList'
 
 export default function SearchSong() {
     const controller = localStorage.getItem('access_token');
-    const [ type, list ] = useSelector(resultsValue)
+    const [ _, list ] = useSelector(resultsValue)
 
     return (
-        <div className="search-song-container">
-            <div className="page-top-container">
+        <div className={styles.searchSongContainer}>
+            <div className={styles.pageTopWrapper}>
                 {!controller ?
-                    <div className="authentication-container">
-                        <button onClick={requestAuthorization} className="login-sptif">
+                    <div className={styles.authenticationWrapper}>
+                        <button onClick={requestAuthorization} className={styles.loginSptif}>
                             Login in Spotify
                         </button>
                     </div>
                     : ''}
             </div>
             <SearchProvider>
-                <div className="search-field-wrapper">
+                <div className={styles.searchFieldWrapper}>
                     <Search />
                 </div>
-                <div className="results-container">
-                    <RenderList isNote={false} type={type} list={list} />
+                <div className={styles.resultsContainer}>
+                    <RenderList isNote={false} list={list} />
                 </div>
             </SearchProvider>
         </div>

@@ -1,6 +1,6 @@
 $inputs-height: 2rem;
 
-.search-container {
+.searchContainer {
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -9,7 +9,7 @@ $inputs-height: 2rem;
     .selectors {
         margin-right: 20px;
 
-        .current-selector-wrapper {
+        .currentSelectorWrapper {
             width: 150px;
             height: $inputs-height;
             border: 1px solid rgba(204, 204, 204, 0.8);
@@ -19,13 +19,13 @@ $inputs-height: 2rem;
                 background-color: #cccccc;
             }
 
-            .current-selector {
+            .currentSelector {
                 margin: 4px 0 0 0   ;
                 text-align: center;
             }
         }
 
-        .items-list {
+        .itemsList {
             padding: 0;
             position: absolute;
             border: 1px solid #ccc;
@@ -33,8 +33,8 @@ $inputs-height: 2rem;
             margin: 0;
             background-color: #fff;
 
-            .list-item-artist,
-            .list-item-song {
+            .listItemArtist,
+            .listItemSong {
                 list-style: none;
 
                 .item {
@@ -54,7 +54,7 @@ $inputs-height: 2rem;
                         margin: 0 0 0 7px;
                     }
 
-                    .list-item-title {
+                    .listItemTitle {
                         padding: 0 7px 0 0;
                         margin: 5px 0 5px 0;
                     }
@@ -67,10 +67,10 @@ $inputs-height: 2rem;
 
     }
 
-    .search-input-wrapper {
+    .searchInputWrapper {
         width: 100%;
 
-        #search-field{
+        #searchField{
             padding: 0 10px;
             height: $inputs-height;
             width: 100%;

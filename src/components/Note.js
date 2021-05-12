@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { allNotesTracks, allNotesArtists } from "../app/notes";
-import './styles/Note.scss'
+import styles from  './styles/Note.scss'
 import { RenderList } from './RenderList'
 
 // TODO add styles
@@ -12,19 +12,19 @@ export default function Note() {
     const [list, setList] = useState(!artists.length ? tracks : artists)
 
     return (
-        <div className="notes-container">
-            <h1 className="page-title">Мои заметки</h1>
-            <div className="notes-selectors-wrapper">
+        <div className={styles.notesContainer}>
+            <h1 className={styles.pageTitle}>Мои заметки</h1>
+            <div className={styles.notesSelectorsWrapper}>
                 <button onClick={() => {
                     setActiveSelector('artist')
                     setList(artists)
-                }} className="selector">Исполнители</button>
+                }} className={styles.selector}>Исполнители</button>
                 <button onClick={() => {
                     setActiveSelector('track')
                     setList(tracks)
-                }} className="selector">Песни</button>
+                }} className={styles.selector}>Песни</button>
             </div>
-            <div className="notes-list">
+            <div className={styles.notesList}>
                 <RenderList isNote={true} type={activeSelector} list={list}/>
             </div>
         </div>

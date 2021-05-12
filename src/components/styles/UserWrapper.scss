@@ -1,19 +1,19 @@
-.user-container {
+.userContainer {
 
-    .user-info-wrapper {
+    .userInfoWrapper {
         display: flex;
         flex-direction: row;
         align-items: center;
         text-decoration: none;
         color: #ffffff;
 
-        .user-avatar {
+        .userAvatar {
             height: 60px;
             width: auto;
             border-radius: 50px;
         }
 
-        .user-name {
+        .userName {
             margin: 0 0 0 24px;
         }
     }

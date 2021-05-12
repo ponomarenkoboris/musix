@@ -9,7 +9,7 @@ $wrapper-box-shadow: 20px 20px 92px #afafaf, -20px -20px 92px #ffffff;
         transition: width 200ms ease-in-out;
     }
 
-    .add-to-favor-btn {
+    .addToFavorBtn {
         cursor: pointer;
         background-color: #fff;
         outline: none;
@@ -18,7 +18,7 @@ $wrapper-box-shadow: 20px 20px 92px #afafaf, -20px -20px 92px #ffffff;
     }
 
     &:hover {
-        .add-to-favor-btn {
+        .addToFavorBtn {
             color: #1db954;
         }
 
@@ -31,7 +31,7 @@ $wrapper-box-shadow: 20px 20px 92px #afafaf, -20px -20px 92px #ffffff;
 }
 
 // TODO complete styles
-.artist-wrapper {
+.artistWrapper {
     display: flex;
     margin: $wrapper-margin;
     align-items: center;
@@ -41,31 +41,31 @@ $wrapper-box-shadow: 20px 20px 92px #afafaf, -20px -20px 92px #ffffff;
     border-radius: 15px;
     box-shadow: $wrapper-box-shadow;
 
-    .artist-main-info {
+    .artistMainInfo {
         display: flex;
         flex-direction: column;
         justify-content: center;
         text-align: center;
 
-        .artist-button-wrapper {
+        .artistButtonWrapper {
             width: 135px;
 
             @include button-fav-wrapper;
         }
     }
 
-    .artist-genre-wrapper {
+    .artistGenreWrapper {
         display: flex;
         flex-direction: column;
         text-align: center;
 
-        .artist-genre-title {
+        .artistGenreTitle {
             font-weight: 700;
             font-size: 1.5rem;
         }
     }
 }
-.track-wrapper {
+.trackWrapper {
     display: flex;
     margin: $wrapper-margin;
     align-items: center;
@@ -75,11 +75,11 @@ $wrapper-box-shadow: 20px 20px 92px #afafaf, -20px -20px 92px #ffffff;
     border-radius: 15px;
     box-shadow: $wrapper-box-shadow;
 
-    .track-information {
+    .trackInformation {
         display: flex;
         flex-direction: column;
 
-        .track-button-wrapper {
+        .trackButtonWrapper {
             width: 135px;
 
             @include button-fav-wrapper;

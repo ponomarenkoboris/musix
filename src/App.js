@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, NavLink, Route, Redirect } from 'react-router-dom'
-import './App.scss';
+import styles from  './App.scss';
 import SearchSong from './components/SearchSong';
 import Note from './components/Note'
 import { ThemeSwitcher } from "./components/ThemeSwitcher";
@@ -24,17 +24,17 @@ export default function App() {
         <ThemeProvider>
             <div className="App">
                 <Router>
-                    <header className="App-header">
-                        <div className="routes-wrapper">
-                            <NavLink className="route-link" to={'/search-song'} exact activeClassName="active-route">Search Song</NavLink>
-                            <NavLink className="route-link" to={'/notes'} exact activeClassName="active-route">My Notes</NavLink>
+                    <header className={styles.appHeader}>
+                        <div className={styles.routesWrapper}>
+                            <NavLink className={styles.routeLink} to={'/search-song'} exact activeClassName={styles.activeRoute}>Search Song</NavLink>
+                            <NavLink className={styles.routeLink} to={'/notes'} exact activeClassName={styles.activeRoute}>My Notes</NavLink>
                         </div>
                         <ThemeSwitcher />
-                        <div className="logo-wrapper">
+                        <div className={styles.logoWrapper}>
                             {localStorage.getItem('user_avatar') ? <UserWrapper /> : <h1>LOGO</h1>}
                         </div>
                     </header>
-                    <main className="main-section">
+                    <main className={styles.mainSection}>
                         <Redirect from={'/'} to={'/search-song'} />
                         <Route path={'/search-song'}>
                             <SearchSong />

@@ -1,5 +1,5 @@
 import React from 'react'
-import './styles/UserWrapper.scss'
+import styles from './styles/UserWrapper.scss'
 
 export const UserWrapper = () => {
     const name = localStorage.getItem('display_name')
@@ -8,10 +8,10 @@ export const UserWrapper = () => {
 
     return (
         <>
-            <div className="user-container">
-                <a href={uri} className="user-info-wrapper">
-                    <img className="user-avatar" src={avatarSrc} alt={`${name} avatar`} />
-                    <h1 className="user-name">{name}</h1>
+            <div className={styles.userContainer}>
+                <a href={uri} className={styles.userInfoWrapper}>
+                    <img className={styles.userAvatar} src={avatarSrc} alt={`${name} avatar`} />
+                    <h1 className={styles.userName}>{name}</h1>
                 </a>
             </div>
         </>
