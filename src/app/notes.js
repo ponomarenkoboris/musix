@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit"
 
 // TODO complete
 export const notes = createSlice({
@@ -20,7 +20,7 @@ export const notes = createSlice({
     }
 })
 
-export const { addToNote, removeFromNote } = notes.actions;
-export const allNotesTracks = state => state.favourites.notesTracks;
-export const allNotesArtists = state => state.favourites.notesArtists;
+export const { addToNote, removeFromNote } = notes.actions
+export const allNotesTracks = state => state.favourites.notesTracks
+export const allNotesArtists = state => state.favourites.notesArtists
 export default notes.reducer

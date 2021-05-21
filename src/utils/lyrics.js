@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from 'axios'
 
 function getLyricsAPI(artist, song) {
     return new Promise((resolve, reject) => {

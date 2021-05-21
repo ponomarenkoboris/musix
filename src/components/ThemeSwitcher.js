@@ -1,5 +1,5 @@
-import React, {useRef} from "react";
-import { useThemeContext } from "../context/ThemeContext";
+import React, {useRef} from "react"
+import { useThemeContext } from "../context/ThemeContext"
 import styles from './styles/ThemeSwitcher.scss'
 
 const DAY_MODE = '#ffffff'

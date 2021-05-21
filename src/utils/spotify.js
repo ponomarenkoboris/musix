@@ -21,7 +21,7 @@ function getUserData(token) {
         }
         const userData = axios.request(requestConfig);
         userData.then(response => resolve(response.data))
-        userData.catch(error => reject(['some went wrong', error]))
+        userData.catch(error => reject(['[path: /utils/spotify; line: 24] Something went wrong', error]))
     })
 
 }
@@ -79,6 +79,6 @@ export function sendSearchRequestAPI(value, type) {
         }
         const data = axios.request(requestConfig)
         data.then(response => resolve(type !== 'track' ? { type, list: response.data?.artists?.items } : { type, list: response.data?.tracks?.items }))
-        data.catch(error => reject({ customMess: 'Some thing got wrong', ...error }))
+        data.catch(error => reject({ customMess: '[path: /utils/spotify; line: 82] Something went wrong', ...error }))
     })
 }

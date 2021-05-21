@@ -4,6 +4,7 @@ const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const ip = require('ip');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 module.exports = {
     entry: path.resolve(__dirname, 'src', 'index.js'),
@@ -52,10 +53,12 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: "./src/index.html"
+            template: path.resolve(__dirname, 'src/public', 'index.html'),
+            favicon: path.resolve(__dirname, 'src/public', 'musix.ico')
         }),
         new webpack.HotModuleReplacementPlugin(),
         new MiniCssExtractPlugin(),
+        new ESLintPlugin(),
         new CleanWebpackPlugin()
     ]
 }

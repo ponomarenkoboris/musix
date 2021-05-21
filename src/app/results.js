@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit"
 
 export const searchResults = createSlice({
     name: 'results',
@@ -14,8 +14,8 @@ export const searchResults = createSlice({
     }
 })
 
-export const { addResults } = searchResults.actions;
+export const { addResults } = searchResults.actions
 
-export const resultsValue = state => [ state.results.type, state.results.value ];
+export const resultsValue = state => [state.results.type, state.results.value]
 
 export default searchResults.reducer

@@ -1,8 +1,8 @@
-import React, {useRef, useState} from "react";
+import React, {useRef, useState} from "react"
 import { sendSearchRequestAPI } from '../utils/spotify'
-import { useDispatch } from "react-redux";
-import { addResults } from "../app/results";
-import { useSearchContext } from "../context/SearchContext";
+import { useDispatch } from "react-redux"
+import { addResults } from "../app/results"
+import { useSearchContext } from "../context/SearchContext"
 import styles from './styles/Search.scss'
 
 // delay function

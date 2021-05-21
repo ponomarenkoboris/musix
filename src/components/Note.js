@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { allNotesTracks, allNotesArtists } from "../app/notes";
+import React, { useState } from "react"
+import { useSelector } from "react-redux"
+import { allNotesTracks, allNotesArtists } from "../app/notes"
 import styles from  './styles/Note.scss'
 import { RenderList } from './RenderList'
 

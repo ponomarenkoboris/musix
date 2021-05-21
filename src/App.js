@@ -1,12 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, NavLink, Route, Redirect } from 'react-router-dom'
-import styles from  './App.scss';
-import SearchSong from './components/SearchSong';
+import styles from  './App.scss'
+import SearchSong from './components/SearchSong'
 import Note from './components/Note'
-import { ThemeSwitcher } from "./components/ThemeSwitcher";
+import { ThemeSwitcher } from "./components/ThemeSwitcher"
 import { UserWrapper } from './components/UserWrapper'
 import { ThemeProvider } from './context/ThemeContext'
-import { fetchUserData } from "./utils/spotify";
+import { fetchUserData } from "./utils/spotify"
 
 export default function App() {
 
@@ -46,5 +46,5 @@ export default function App() {
                 </Router>
             </div>
         </ThemeProvider>
-    );
+    )
 }
