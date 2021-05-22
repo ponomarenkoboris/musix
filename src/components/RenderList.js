@@ -1,12 +1,12 @@
 import React from 'react'
 import {useSelector} from "react-redux"
-import {resultsValue} from "../app/results";
-import {RenderArtists} from "./renders/RenderArtists";
-import {RenderTracks} from "./renders/RenderTracks";
-import {useSearchContext} from "../context/SearchContext";
+import {resultsValue} from "../app/results"
+import {RenderArtists} from "./renders/RenderArtists"
+import {RenderTracks} from "./renders/RenderTracks"
+import {useSearchContext} from "../context/SearchContext"
+import {allNotesArtists, allNotesTracks} from "../app/notes"
 
-// TODO complete styles
-export const RenderList = ({ isNote }) => {
+export const RenderList = ({ isNote, active = 'artist' }) => {
     if (!isNote) {
         const [ type, list ] = useSelector(resultsValue)
         const { searchBy } = useSearchContext()
@@ -19,6 +19,19 @@ export const RenderList = ({ isNote }) => {
                 }
                 {type === 'artist' ? <RenderArtists list={list}/> : <RenderTracks list={list}/>}
             </>
+        )
+    }
+    if (isNote) {
+        const tracks = useSelector(allNotesTracks)
+        const artists = useSelector(allNotesArtists)
+
+        if (active === 'artist' && !artists.length) return <p>Записей пока нет</p>
+        if (active === 'track' && !tracks.length) return <p>Записей пока нет</p>
+
+        return (
+            <div style={{ marginTop: '50px' }}>
+                {active === 'artist' ? <RenderArtists list={artists}/> : <RenderTracks list={tracks} />}
+            </div>
         )
     }
 }
